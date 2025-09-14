@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Den\\Documents\\MyProject\\analyt-iq\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C4BD7188-9AD1-4DE9-84B0-75DAC49DDDF8}|saga-service\\saga-service.csproj|c:\\users\\den\\documents\\myproject\\analyt-iq\\backend\\saga-service\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4BD7188-9AD1-4DE9-84B0-75DAC49DDDF8}|saga-service\\saga-service.csproj|solutionrelative:saga-service\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4BD7188-9AD1-4DE9-84B0-75DAC49DDDF8}|saga-service\\saga-service.csproj|c:\\users\\den\\documents\\myproject\\analyt-iq\\backend\\saga-service\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4BD7188-9AD1-4DE9-84B0-75DAC49DDDF8}|saga-service\\saga-service.csproj|solutionrelative:saga-service\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Den\\Documents\\MyProject\\analyt-iq\\backend\\saga-service\\Program.cs",
+              "RelativeDocumentMoniker": "saga-service\\Program.cs",
+              "ToolTip": "C:\\Users\\Den\\Documents\\MyProject\\analyt-iq\\backend\\saga-service\\Program.cs",
+              "RelativeToolTip": "saga-service\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T10:08:39.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Worker.cs",
+              "DocumentMoniker": "C:\\Users\\Den\\Documents\\MyProject\\analyt-iq\\backend\\saga-service\\Worker.cs",
+              "RelativeDocumentMoniker": "saga-service\\Worker.cs",
+              "ToolTip": "C:\\Users\\Den\\Documents\\MyProject\\analyt-iq\\backend\\saga-service\\Worker.cs",
+              "RelativeToolTip": "saga-service\\Worker.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T10:08:33.341Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
