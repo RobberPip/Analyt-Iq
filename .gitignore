@@ -1,4 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# =====================
+# Node / Next.js
+# =====================
 
 # dependencies
 /node_modules
@@ -39,3 +41,45 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# =====================
+# C# / .NET
+# =====================
+
+# Build results
+bin/
+obj/
+[Rr]elease/
+[Dd]ebug/
+x64/
+x86/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.vcxproj.user
+
+# Mono
+*.pidb
+*.svd
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Entity Framework / Migrations
+Migrations/
