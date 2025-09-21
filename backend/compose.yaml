@@ -1,4 +1,7 @@
-﻿services:
+networks:
+  appnet:
+
+services:
   # PostgreSQL
   webinar_service_db:
     container_name: postgres_webinarServiceDb
@@ -11,6 +14,8 @@
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - appnet
 
   # Zookeeper
   zookeeper:
@@ -21,6 +26,8 @@
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    networks:
+      - appnet
 
   # Kafka
   kafka:
@@ -38,6 +45,66 @@
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
       - "9092:9092"
+    networks:
+      - appnet
+
+  # ClickHouse
+  clickhouse-server:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_USER: "default"
+      CLICKHOUSE_PASSWORD: "mypass"
+      CLICKHOUSE_DB: "default"
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse client --query 'SELECT 1'"]
+      interval: 10s
+      retries: 5
+
+  # ClickHouse миграция таблиц
+  clickhouse-migrate:
+    image: clickhouse/clickhouse-client:latest
+    depends_on:
+      clickhouse-server:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      until clickhouse client --host clickhouse-server --user default --password mypass --query 'SELECT 1'; do
+        echo 'Waiting for ClickHouse to be ready...';
+        sleep 1;
+      done;
+      clickhouse client --host clickhouse-server --user default --password mypass --multiquery < /ClickHouseMigrations/init_tables.sql;
+      "
+    volumes:
+      - ./ClickHouseMigrations/init_tables.sql:/ClickHouseMigrations/init_tables.sql:ro
+    networks:
+      - appnet
+
+  fluent-bit:
+    image: fluent/fluent-bit:latest
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      - ./parsers.conf:/fluent-bit/etc/parsers.conf:ro
+      - ./webinar-service/logs:/var/log/myapp:ro
+      - ./tail-db:/fluent-bit/tail-db
+    ports:
+      - "2020:2020"
+    restart: always
+    networks:
+      - appnet
 
 volumes:
   pgdata:
+  clickhouse_data:

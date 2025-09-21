@@ -18,6 +18,7 @@ public partial class WebinarService
 
     public IEnumerable<WebinarOut> GetAllWebinars()
     {
+        logger.LogInformation("1111111111111");
         return _db.Webinars
             .Select(w => new WebinarOut
             {

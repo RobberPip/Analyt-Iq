@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85E5EE28-B966-4628-8D3F-EF91C321419C}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		ClickHouseMigrations\init_tables.sql = ClickHouseMigrations\init_tables.sql
+		fluent-bit.conf = fluent-bit.conf
+		parsers.conf = parsers.conf
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "saga-service", "saga-service\saga-service.csproj", "{C4BD7188-9AD1-4DE9-84B0-75DAC49DDDF8}"
