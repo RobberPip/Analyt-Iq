@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Formatting.Compact;
-using webinar_service.Adapters;
 using webinar_service.Adapters.Http;
 using webinar_service.Adapters.Kafka;
 using webinar_service.Db;
@@ -48,6 +47,8 @@ builder.Services.Configure<KafkaSettings>(
 );
 
 builder.Services.AddHostedService<KafkaConsumer>();
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

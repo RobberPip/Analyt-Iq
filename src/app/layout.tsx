@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/providers/theme-provider";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
+import "./shared/styles/index.css"
+import { ThemeProvider } from "@/providers/theme-provider";
+import { Header } from "./widgets/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +36,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex flex-col h-screen">
+            <Header />
+            <main className="flex overflow-hidden">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
-    </html>
+    </html >
   );
 }
