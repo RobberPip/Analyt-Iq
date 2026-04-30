@@ -9,6 +9,18 @@ import {
     useReactFlow,
 } from '@xyflow/react';
 
+// Mapping from sidebar drag label → React Flow node type
+const NODE_T    YPE_MAP: Record<string, string> = {
+    InputNode: 'InputNode',
+    DatabaseNode: 'DatabaseNode',
+    QueryNode: 'QueryNode',
+    FilterNode: 'FilterNode',
+    OutputNode: 'OutputNode',
+    GoogleDriveNode: 'GoogleDriveNode',
+    TelegramNode: 'TelegramNode',
+    WildberriesNode: 'WildberriesNode',
+};
+
 export function reactFlowHandlers(initialNodes: Node[], initialEdges: any[]) {
     const { screenToFlowPosition } = useReactFlow();
     const [nodes, setNodes] = useState(initialNodes);
@@ -45,17 +57,22 @@ export function reactFlowHandlers(initialNodes: Node[], initialEdges: any[]) {
         (event: React.DragEvent) => {
             event.preventDefault();
             if (!dragType) return;
+
+            const resolvedType = NODE_TYPE_MAP[dragType];
+            if (!resolvedType) return;
+
             const position = screenToFlowPosition({
-                x: event.clientX - 150,
-                y: event.clientY - 50,
+                x: event.clientX - 128,
+                y: event.clientY - 40,
             });
-            console.log(dragType)
+
             const newNode: Node = {
-                id: `${dragType}_${crypto.randomUUID()}`,
-                type: 'custom',
+                id: `${resolvedType}_${crypto.randomUUID()}`,
+                type: resolvedType,
                 position,
-                data: { label: `${dragType} node` },
+                data: {},
             };
+
             setNodes((nds) => [...nds, newNode]);
             setDragType(null);
         },

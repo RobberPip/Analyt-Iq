@@ -15,16 +15,31 @@ import { initialEdges, initialNodes } from './model';
 import { reactFlowHandlers } from '@/app/hooks/reactFlowHandlers';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import InputNode from '@/components/ui/InputNode';
-import { NodeWrapper } from '@/components/ui/CustomNode';
+import DatabaseNode from '@/components/ui/DatabaseNode';
+import QueryNode from '@/components/ui/QueryNode';
+import FilterNode from '@/components/ui/FilterNode';
+import OutputNode from '@/components/ui/OutputNode';
+import GoogleDriveNode from '@/components/ui/GoogleDriveNode';
+import TelegramNode from '@/components/ui/TelegramNode';
+import WildberriesNode from '@/components/ui/WildberriesNode';
+
 const nodeTypes = {
-  InputNode: InputNode,  // ← название должно совпадать с type в initialNodes
-  custom: NodeWrapper,    // ← для ноды с type: 'custom'
+    InputNode,
+    DatabaseNode,
+    QueryNode,
+    FilterNode,
+    OutputNode,
+    GoogleDriveNode,
+    TelegramNode,
+    WildberriesNode,
 };
+
 function Page() {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const { theme, systemTheme } = useTheme();
     const [isMounted, setIsMounted] = useState(false);
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
+
     const {
         nodes,
         edges,
@@ -44,10 +59,7 @@ function Page() {
     if (!isMounted) return null;
 
     return (
-        <div
-            ref={reactFlowWrapper}
-            className="flex flex-auto relative"
-        >
+        <div ref={reactFlowWrapper} className="flex flex-auto relative">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -60,13 +72,18 @@ function Page() {
                 onDragOver={onDragOver}
                 colorMode={currentTheme === 'dark' ? 'dark' : 'light'}
                 className="w-full h-full"
+                deleteKeyCode="Delete"
             >
                 <Controls />
-                <MiniMap />
-                <Background variant={"dots" as any} gap={12} size={1} />
+                <MiniMap nodeStrokeWidth={3} />
+                <Background variant={"dots" as any} gap={16} size={1} />
             </ReactFlow>
             <aside>
-                <SidebarProvider open={open} style={{ ['--sidebar-width' as any]: '480px' }} onOpenChange={setOpen}>
+                <SidebarProvider
+                    open={open}
+                    style={{ ['--sidebar-width' as any]: '260px' }}
+                    onOpenChange={setOpen}
+                >
                     <SidebarNodes onDragStart={onDragStart} />
                     <CustomTriggerSideBar />
                 </SidebarProvider>
